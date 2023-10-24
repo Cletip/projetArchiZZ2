@@ -4,7 +4,7 @@
 #+begin_src emacs-lisp
 
   cd businessGame
-  python manage.py runserver
+  python3 manage.py runserver
 
 
 #+end_src
