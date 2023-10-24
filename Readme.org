@@ -1,4 +1,14 @@
 
+* Lancer django
+
+#+begin_src emacs-lisp
+
+  cd businessGame
+  python manage.py runserver
+
+
+#+end_src
+
 * Activer l'environnement
 
 #+begin_src emacs-lisp
