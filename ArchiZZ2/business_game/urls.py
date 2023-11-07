@@ -2,6 +2,6 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('template1/', views.ma_vue_template, name='template1'),
-    path('', views.accueil, name='page_accueil'),
+    path('', views.index, name='index'),
+    path('simulation/', views.simulation, name='simulation'),
 ]

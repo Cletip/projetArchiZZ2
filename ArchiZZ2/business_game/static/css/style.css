@@ -1,10 +1,32 @@
 /* style.css */
 
+header{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    color: antiquewhite;
+    font-size: x-large;
+    text-align: center;
+}
+
 body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(to right, #eeff00, #ff0077);
+    background-image: url(../img/flat-mountain-landscape-wallpaper-2560x1920_27.jpg);
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin: 0;
     padding: 0;
+}
+
+main{
+    width: 70%;
+    border-radius: 20px;
+    background : linear-gradient(to bottom, #ffffff, #c7c7c7);
+    padding : 10px;
 }
 
 h1 {
@@ -13,5 +35,36 @@ h1 {
 
 p {
     color: #666;
+    font-size: 18px;
+    text-align: justify;
+}
+
+
+footer{
+    width: 100%;
+    background-color: black;
+    font-size: 15px;
+    color: antiquewhite;
+    text-align: center;
+    padding : 20px 0px;
+}
+
+a{
+    display: inline-block;
+    padding: 10px 20px;
     font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    background-color: #3498db; /* Couleur de fond du bouton */
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+
+a:hover {
+    background-color: #2980b9; /* Couleur de fond au survol */
 }
