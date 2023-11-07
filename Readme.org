@@ -1,18 +1,14 @@
 
 * Lancer django
 
-#+begin_src emacs-lisp
+#+begin_src shell
 
+  # Activer l'environnement
+  source monenv/bin/activate
+
+  # lancer le serveur
   cd businessGame
   python3 manage.py runserver
 
-
-#+end_src
-
-* Activer l'environnement
-
-#+begin_src emacs-lisp
-
-source monenv/bin/activate
 
 #+end_src
