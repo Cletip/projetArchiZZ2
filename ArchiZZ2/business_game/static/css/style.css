@@ -23,18 +23,17 @@ body {
 }
 
 main{
+    color: #699fca;
     width: 70%;
     border-radius: 20px;
-    background : linear-gradient(to bottom, #ffffff, #c7c7c7);
+    background : linear-gradient(to bottom, #171a1b, #373c3f);
     padding : 10px;
 }
 
 h1 {
-    color: #333;
 }
 
 p {
-    color: #666;
     font-size: 18px;
     text-align: justify;
 }

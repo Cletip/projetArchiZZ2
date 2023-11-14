@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Business Game</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<header>
+    Clement la grande dinde
+</header>
+<body>
+    <main>
+        <h1>Liste des Joueurs</h1>
+        <ul>
+            {% for joueur in joueurs %}
+                <li>{{ joueur.idjoueur }} - Capital: {{ joueur.capital }}</li>
+            {% endfor %}
+        </ul>
+
+        <h1>Liste des Entreprises</h1>
+        <ul>
+            {% for entreprise in entreprises %}
+                <li>{{ entreprise.idEntreprise }} - Cote: {{ entreprise.cote }}</li>
+            {% endfor %}
+        </ul>
+
+        <h1>Liste des Placements</h1>
+        <ul>
+            {% for placement in placements %}
+                <li>Joueur {{ placement.idjoueur.idjoueur }} - Entreprise {{ placement.idEntreprise.idEntreprise }}</li>
+            {% endfor %}
+        </ul>
+    </main>
+</body>
+<footer>
+    Clement PAYARD - Pierre BOUTERIGE <br>2023-2024
+</footer>
+</html>
