@@ -22,10 +22,15 @@
             Ces jeux sont utilisés à des fins éducatives, de formation et de développement professionnel, offrant aux participants une expérience pratique de la gestion d'entreprise sans risquer de pertes financières réelles. Ils sont largement utilisés dans les écoles de commerce, les programmes de formation en entreprise et les ateliers de développement des compétences pour aider les individus à acquérir une meilleure compréhension du monde des affaires et à perfectionner leurs compétences en gestion.
         </p>
         <h1>Accès au jeu</h1>
-        <form method="post" action="{% url 'creer_nouveau_joueur' %}">
-            {% csrf_token %}
-            <label for="{{ form.nom.id_for_label }}">Nom du joueur:</label>
-            <input type="text" id="{{ form.nom.id_for_label }}" name="{{ form.nom.name }}" required>
+        <form method="post" action="creer-nouveau-joueur/">
+	  {% csrf_token %}
+            <label for="Name" id="NamePlayer">Nom du joueur:</label>
+            <input type="text" id="NamePlayer" name="Name" required>
+
+            <label for="Capital" id="CapitalPlayer">Capital de départ:</label>
+            <input type="text" id="CapitalPlayer" name="Capital" required>
+
+
             <button type="submit">Jouer</button>
         </form>
         <h1>Pourquoi ce projet</h1>

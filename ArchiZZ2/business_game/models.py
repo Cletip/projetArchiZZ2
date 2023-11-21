@@ -13,3 +13,9 @@ class Entreprise(models.Model):
 class Placement(models.Model):
     idjoueur = models.ForeignKey(Joueur, on_delete=models.CASCADE)
     idEntreprise = models.ForeignKey(Entreprise, on_delete=models.CASCADE)
+    argent = models.FloatField(default=0.0)  # Champ float
+
+
+def addJoueur(Name="NomJoueur", Capital=1500):
+    print(Name)
+    return Joueur.objects.create(capital=Capital, nom=Name)

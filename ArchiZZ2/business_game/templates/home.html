@@ -1,39 +1,69 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <title>Business Game</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
-<header>
-    Clement la grande dinde
-</header>
-<body>
+  </head>
+  <header>
+    Pierre la grande dinde cacaproutproutsaucepamplemousse
+  </header>
+  <body>
     <main>
-        <h1>Liste des Joueurs</h1>
-        <ul>
-            {% for joueur in joueurs %}
-                <li>{{ joueur.idjoueur }} - Capital: {{ joueur.capital }} - Nom: {{ joueur.nom}}</li>
-            {% endfor %}
-        </ul>
+      <div id="Joueur">
+	<!-- score et nom -->
+      </div>
+      <div id="prevision">
+	<!-- tableau avec "graph" -->
+      </div>
+      <div id="leaderboard">
+	<h1>Liste des Joueurs</h1>
+	<ul>
+          {% for joueur in joueurs %}
+          <li>{{ joueur.idjoueur }} - Capital: {{ joueur.capital }} - Nom: {{ joueur.nom}}</li>
+          {% endfor %}
+	</ul>      
+      </div>
+      
+      <form method="post" action="home/">
+	<div id="newPlacement">
+	  <h1>Liste des Entreprises</h1>
+          {% csrf_token %}
+	  
+	  {% for entreprise in entreprises %}
+	  <div>
+	    <input type="hidden" name="id_entreprise" value="{{ entreprise.idEntreprise }}">
+	    <label for="nom">{{ entreprise.nom }}</label>
+	    <label for="cote">Cote:{{ entreprise.cote }}</label>
+	    <label for="argent">Argent:</label>
+	    <input name="argent" value="0">$</label>
+	  </div>
+	  {% endfor %}
 
-        <h1>Liste des Entreprises</h1>
-        <ul>
-            {% for entreprise in entreprises %}
-                <li>{{ entreprise.idEntreprise }} - Cote: {{ entreprise.cote }} - Nom: {{ entreprise.nom}}</li>
-            {% endfor %}
-        </ul>
+	</div>
 
-        <h1>Liste des Placements</h1>
-        <ul>
-            {% for placement in placements %}
-                <li>Joueur {{ placement.idjoueur.idjoueur }} - Entreprise {{ placement.idEntreprise.idEntreprise }}</li>
-            {% endfor %}
-        </ul>
+	<div id="placementJoueur">
+	  <h1>Liste des Placements</h1>
+	  <ul>
+	    {% for placement in placements %}
+            <li>
+	      Entreprise {{ placement.idEntreprise }}
+	      Argent {{ placement.argent }}
+              <label for="placement_{{ placement.id }}">Supprimer</label>
+              <input type="checkbox" name="placement_{{ placement.id }}" value="supprime">
+            </li>
+	    {% endfor %}
+	  </ul>
+	</div>
+
+	<input type="submit" value="Soumettre">
+	
+      </form>
+      
     </main>
-</body>
-<footer>
+  </body>
+  <footer>
     Clement PAYARD - Pierre BOUTERIGE <br>2023-2024
-</footer>
+  </footer>
 </html>

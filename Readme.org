@@ -57,3 +57,15 @@ businessGame/
 
 5 directories, 14 files
 #+end_example
+
+* Migration database
+:PROPERTIES:
+:CREATED:  [2023-11-21 Tue 11:08]
+:END:
+
+#+begin_src shell
+
+python3 manage.py makemigrations
+python3 manage.py migrate
+
+#+end_src
