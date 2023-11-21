@@ -14,14 +14,14 @@
         <h1>Liste des Joueurs</h1>
         <ul>
             {% for joueur in joueurs %}
-                <li>{{ joueur.idjoueur }} - Capital: {{ joueur.capital }}</li>
+                <li>{{ joueur.idjoueur }} - Capital: {{ joueur.capital }} - Nom: {{ joueur.nom}}</li>
             {% endfor %}
         </ul>
 
         <h1>Liste des Entreprises</h1>
         <ul>
             {% for entreprise in entreprises %}
-                <li>{{ entreprise.idEntreprise }} - Cote: {{ entreprise.cote }}</li>
+                <li>{{ entreprise.idEntreprise }} - Cote: {{ entreprise.cote }} - Nom: {{ entreprise.nom}}</li>
             {% endfor %}
         </ul>
 

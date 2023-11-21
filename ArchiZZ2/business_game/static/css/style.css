@@ -23,7 +23,7 @@ body {
 }
 
 main{
-    color: #699fca;
+    color: rgb(235, 162, 113);
     width: 70%;
     border-radius: 20px;
     background : linear-gradient(to bottom, #171a1b, #373c3f);
@@ -48,7 +48,7 @@ footer{
     padding : 20px 0px;
 }
 
-a{
+a, button{
     display: inline-block;
     padding: 10px 20px;
     font-size: 16px;
