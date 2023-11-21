@@ -4,10 +4,10 @@
 #+begin_src shell
 
   # Activer l'environnement
-  source monenv/bin/activate
+  # source monenv/bin/activate
 
   # lancer le serveur
-  cd businessGame
+  cd ArchiZZ2/
   python3 manage.py runserver
 
 
