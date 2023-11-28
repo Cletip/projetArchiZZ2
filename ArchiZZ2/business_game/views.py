@@ -7,8 +7,52 @@ def index(request):
     return render(request, 'index.html')
 
 def simulation(request):
-    return render(request, 'simulation.html')
+    # Trouve le joueur avec l'ID le plus petit
+    joueur_avec_petit_id = Joueur.objects.order_by('idjoueur').first()
 
+
+    # suppression d'abord
+    for entreprise in Entreprise.objects.all():
+    #     # Récupérer la quantité d'argent investi pour cette entreprise
+        supprimer_placement = request.POST.get(f'placement_{entreprise.idEntreprise}')
+        if supprimer_placement == "supprime":
+            # récupération argent placé
+            placement = Placement.objects.filter(joueur=joueur_avec_petit_id, Entreprise=entreprise).first()
+            joueur_avec_petit_id.capital += placement.argent
+            joueur_avec_petit_id.save()
+
+            # Supprimer tous les placements correspondants pour ce joueur et cette entreprise
+            Placement.objects.filter(joueur=joueur_avec_petit_id, Entreprise=entreprise).delete()
+
+    # Traitement des investissements
+    for entreprise in Entreprise.objects.all():
+    #     # Récupérer la quantité d'argent investi pour cette entreprise
+        argent_investi = float(request.POST.get(f'{entreprise.idEntreprise}', 0))
+
+        if argent_investi != 0:
+
+            # Vérifie si un placement existe déjà pour ce joueur et cette entreprise
+            placement_existant = Placement.objects.filter(joueur=joueur_avec_petit_id, Entreprise=entreprise).first()
+
+            if placement_existant:
+                # Si un placement existe, mettez à jour le montant
+                placement_existant.argent += argent_investi
+                placement_existant.save()
+            else:
+                # Sinon, créez un nouveau placement
+                Placement.objects.create(
+                    joueur=joueur_avec_petit_id,
+                    Entreprise=entreprise,
+                    argent=argent_investi
+                )
+
+
+        # Mettre à jour le capital du joueur
+        joueur_avec_petit_id.capital -= argent_investi
+        joueur_avec_petit_id.save()
+
+    # Rediriger vers la page d'accueil après le traitement
+    return redirect('home')
 
 def initialize_database(NomJoueur, CapitalDep):
 
@@ -28,8 +72,8 @@ def initialize_database(NomJoueur, CapitalDep):
     entreprise2 = Entreprise.objects.create(cote=75.0, nom="pipiboudin")
 
     # Créer des placements
-    placement1 = Placement.objects.create(idjoueur=bot1, idEntreprise=entreprise1)
-    placement2 = Placement.objects.create(idjoueur=bot2, idEntreprise=entreprise2)
+    placement1 = Placement.objects.create(joueur=bot1, Entreprise=entreprise1)
+    placement2 = Placement.objects.create(joueur=bot2, Entreprise=entreprise2)
 
 def display_data(request):
     joueurs = Joueur.objects.all()
@@ -64,12 +108,12 @@ def creer_nouveau_joueur(request):
     # return render(request, 'mon_template.html', {'form': form})
 
 def addPlacement(Joueur, entreprise, argent):
-    Placement.objects.create(idjoueur=bot1, idEntreprise=entreprise1, argent=1)
+    Placement.objects.create(joueur=bot1, Entreprise=entreprise1, argent=1)
     return 0
 
 def votre_vue(request):
     joueur_min_id = Joueur.objects.order_by('idjoueur').first().idjoueur
-    placements = Placement.objects.filter(idjoueur=joueur_min_id)
+    placements = Placement.objects.filter(joueur=joueur_min_id)
 
     context = {
         'placements': placements,
@@ -79,9 +123,12 @@ def votre_vue(request):
     return render(request, 'votre_template.html', context)
 
 def home(request):
-    joueurs = Joueur.objects.all()
+    joueurs = Joueur.objects.all().order_by('-capital')
     entreprises = Entreprise.objects.all()
-    placements = Placement.objects.all()
+
+    # Trouve le joueur avec l'ID le plus petit
+    joueur_avec_petit_id = Joueur.objects.order_by('idjoueur').first()
+    placements = Placement.objects.filter(joueur=joueur_avec_petit_id)
 
     context = {
         'joueurs': joueurs,
@@ -90,6 +137,6 @@ def home(request):
     }
 
     if request.method == 'POST':
-     return render(request, 'home.html', context)
+        return render(request, 'home.html', context)
     else:
-     return render(request, 'home.html', context)
+        return render(request, 'home.html', context)

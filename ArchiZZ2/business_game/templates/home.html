@@ -18,17 +18,17 @@
 	<!-- tableau avec "graph" -->
       </div>
       <div id="leaderboard">
-	<h1>Liste des Joueurs</h1>
+	<h1>Leaderboard</h1>
 	<ul>
           {% for joueur in joueurs %}
-          <li>{{ joueur.idjoueur }} - Capital: {{ joueur.capital }} - Nom: {{ joueur.nom}}</li>
+          <li>{{ forloop.counter }} - Nom: {{ joueur.nom }} - Capital: {{ joueur.capital }}</li>
           {% endfor %}
 	</ul>      
       </div>
       
-      <form method="post" action="home/">
+      <form method="post" action="/simulation/">
 	<div id="newPlacement">
-	  <h1>Liste des Entreprises</h1>
+	  <h1>Liste des nouveaux placements</h1>
           {% csrf_token %}
 	  
 	  {% for entreprise in entreprises %}
@@ -37,21 +37,21 @@
 	    <label for="nom">{{ entreprise.nom }}</label>
 	    <label for="cote">Cote:{{ entreprise.cote }}</label>
 	    <label for="argent">Argent:</label>
-	    <input name="argent" value="0">$</label>
+	    <input name="{{ entreprise.idEntreprise }}" value="0">$</label>
 	  </div>
 	  {% endfor %}
 
 	</div>
 
 	<div id="placementJoueur">
-	  <h1>Liste des Placements</h1>
+	  <h1>Vos placements</h1>
 	  <ul>
 	    {% for placement in placements %}
             <li>
-	      Entreprise {{ placement.idEntreprise }}
+	      Entreprise {{ placement.Entreprise.nom }}
 	      Argent {{ placement.argent }}
-              <label for="placement_{{ placement.id }}">Supprimer</label>
-              <input type="checkbox" name="placement_{{ placement.id }}" value="supprime">
+              <label for="{{ forloop.counter }}">Supprimer</label>
+              <input type="checkbox" name="placement_{{ placement.Entreprise.idEntreprise }}" value="supprime">
             </li>
 	    {% endfor %}
 	  </ul>
