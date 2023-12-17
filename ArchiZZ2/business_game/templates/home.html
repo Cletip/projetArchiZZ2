@@ -4,62 +4,68 @@
   <head>
     <meta charset="UTF-8">
     <title>Business Game</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <script src="{% static 'js/home.js' %}"></script>
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicon-32x32.png' %}">
   </head>
   <header>
-    Pierre la grande dinde cacaproutproutsaucepamplemousse
+    SIMULATION
   </header>
   <body>
     <main>
       <div id="Joueur">
-	<!-- score et nom -->
-      </div>
-      <div id="prevision">
-	<!-- tableau avec "graph" -->
+        <h1>
+          {{player.nom}}  ~  {{player.capital}} $
+        </h1>
       </div>
       <div id="leaderboard">
-	<h1>Leaderboard</h1>
-	<ul>
-          {% for joueur in joueurs %}
-          <li>{{ forloop.counter }} - Nom: {{ joueur.nom }} - Capital: {{ joueur.capital }}</li>
-          {% endfor %}
-	</ul>      
+        <h1>Leaderboard</h1>
+        <ul>
+                {% for joueur in joueurs %}
+                <li><span class="rank">{{ forloop.counter }}</span>{{ joueur.nom }}<span class="score">{{ joueur.capital }} $</span></li>
+                {% endfor %}
+        </ul>      
       </div>
       
-      <form method="post" action="/simulation/">
-	<div id="newPlacement">
-	  <h1>Liste des nouveaux placements</h1>
-          {% csrf_token %}
-	  
-	  {% for entreprise in entreprises %}
-	  <div>
-	    <input type="hidden" name="id_entreprise" value="{{ entreprise.idEntreprise }}">
-	    <label for="nom">{{ entreprise.nom }}</label>
-	    <label for="cote">Cote:{{ entreprise.cote }}</label>
-	    <label for="argent">Argent:</label>
-	    <input name="{{ entreprise.idEntreprise }}" value="0">$</label>
-	  </div>
-	  {% endfor %}
-
-	</div>
-
-	<div id="placementJoueur">
-	  <h1>Vos placements</h1>
-	  <ul>
-	    {% for placement in placements %}
+      <form name="formulaire" method="post" action="/simulation/" onSubmit="return checkform()">
+        <div id="newPlacement">
+          <h1>Liste des nouveaux placements</h1>
+                {% csrf_token %}
+          <ul>
+            {% for entreprise in entreprises %}
             <li>
-	      Entreprise {{ placement.Entreprise.nom }}
-	      Argent {{ placement.argent }}
-              <label for="{{ forloop.counter }}">Supprimer</label>
-              <input type="checkbox" name="placement_{{ placement.Entreprise.idEntreprise }}" value="supprime">
+              <label for="nom">{{ entreprise.nom }}</label>
+              <label for="cote">Cote:{{ entreprise.cote }}</label>
+              <label for="argent">Argent:</label>
+              <input name="E_{{ entreprise.idEntreprise }}" value="0">$</label>
             </li>
-	    {% endfor %}
-	  </ul>
-	</div>
+            {% endfor %}
+          </ul>
 
-	<input type="submit" value="Soumettre">
-	
+        </div>
+
+        <div id="placementJoueur"> 
+          <h1>Vos placements</h1>
+          <ul>
+            {% for placement in placements %}
+                  <li>
+                    <span>Entreprise {{ placement.Entreprise.nom }}</span>
+                    <span>Argent {{ placement.argent }}</span>
+                    <label for="{{ forloop.counter }}">Supprimer</label>
+                    <input type="checkbox" name="placement_{{ placement.Entreprise.idEntreprise }}" value="supprime">
+                    <input type="hidden" name="placement_{{ placement.Entreprise.idEntreprise }}_val" value="{{ placement.argent }}"></input>
+                  </li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <input type="hidden" name="playerCapital" value="{{player.capital}}">
+        <input type="submit" value="confirmer" id="bouton_confirmer">
+        
       </form>
+      <div id="prevision">
+        <!-- tableau avec "graph" -->
+      </div>
       
     </main>
   </body>

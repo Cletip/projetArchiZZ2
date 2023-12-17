@@ -17,5 +17,4 @@ class Placement(models.Model):
 
 
 def addJoueur(Name="NomJoueur", Capital=1500):
-    print(Name)
     return Joueur.objects.create(capital=Capital, nom=Name)

@@ -61,9 +61,15 @@ a, button{
     background-color: #3498db; /* Couleur de fond du bouton */
     transition: background-color 0.3s ease;
     cursor: pointer;
+    margin-top: 20px;
 }
 
 
 a:hover {
     background-color: #2980b9; /* Couleur de fond au survol */
 }
+
+
+.error {
+    color: red;
+  }

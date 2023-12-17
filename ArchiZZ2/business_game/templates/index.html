@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <title>Business Game</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/index.js' %}"></script>
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicon-32x32.png' %}">
 </head>
 <header>
     Business Game Simulation
@@ -22,15 +24,18 @@
             Ces jeux sont utilisés à des fins éducatives, de formation et de développement professionnel, offrant aux participants une expérience pratique de la gestion d'entreprise sans risquer de pertes financières réelles. Ils sont largement utilisés dans les écoles de commerce, les programmes de formation en entreprise et les ateliers de développement des compétences pour aider les individus à acquérir une meilleure compréhension du monde des affaires et à perfectionner leurs compétences en gestion.
         </p>
         <h1>Accès au jeu</h1>
-        <form method="post" action="creer-nouveau-joueur/">
+        <form name="inscription" method="post" action="creer-nouveau-joueur/" onSubmit="return checkform()">
 	  {% csrf_token %}
             <label for="Name" id="NamePlayer">Nom du joueur:</label>
+            <br>
             <input type="text" id="NamePlayer" name="Name" required>
-
+            <span id="erreurNom" class="error"></span> 
+            <br>
             <label for="Capital" id="CapitalPlayer">Capital de départ:</label>
+            <br>
             <input type="text" id="CapitalPlayer" name="Capital" required>
-
-
+            <span id="erreurCapital" class="error"></span>
+            <br>
             <button type="submit">Jouer</button>
         </form>
         <h1>Pourquoi ce projet</h1>

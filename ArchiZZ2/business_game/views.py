@@ -27,7 +27,7 @@ def simulation(request):
     # Traitement des investissements
     for entreprise in Entreprise.objects.all():
     #     # Récupérer la quantité d'argent investi pour cette entreprise
-        argent_investi = float(request.POST.get(f'{entreprise.idEntreprise}', 0))
+        argent_investi = float(request.POST.get(f'E_{entreprise.idEntreprise}', 0))
 
         if argent_investi != 0:
 
@@ -131,6 +131,7 @@ def home(request):
     placements = Placement.objects.filter(joueur=joueur_avec_petit_id)
 
     context = {
+        'player' : joueur_avec_petit_id,
         'joueurs': joueurs,
         'entreprises': entreprises,
         'placements': placements,
