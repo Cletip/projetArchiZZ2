@@ -15,58 +15,97 @@
     <main>
       <div id="Joueur">
         <h1>
-          {{player.nom}}  ~  {{player.capital}} $
+          {{player.nom}}  :  {{player.capital}} $
         </h1>
       </div>
       <div id="leaderboard">
         <h1>Leaderboard</h1>
         <ul>
-                {% for joueur in joueurs %}
-                <li><span class="rank">{{ forloop.counter }}</span>{{ joueur.nom }}<span class="score">{{ joueur.capital }} $</span></li>
-                {% endfor %}
+            {% for joueur in joueurs %}
+            <li>
+                <div class="item">
+                    <span class="rank">{{ forloop.counter }}</span>
+                </div>
+                <div class="item">
+                    <span>{{ joueur.nom }}</span>
+                </div>
+                <div class="item">
+                    <span class="score">{{ joueur.capital }} $</span>
+                </div>
+            </li>
+            {% endfor %}
         </ul>      
       </div>
-      
+      <div id="prevision">
+        <!-- tableau avec "graph" -->
+        <div id="menu_entreprise_prevision" >
+          {% for entreprise in entreprises %}
+            <button class="tablinks" onclick="openTab(event, 'Entreprise{{ forloop.counter }}')">{{ entreprise.nom }}</button>
+          {% endfor %}
+        </div>
+
+        {% for entreprise in entreprises %}
+          <div id="Entreprise{{ forloop.counter }}" class="tabcontent">
+            <h2>{{ entreprise.nom }}</h2>
+            <div class="graph-container">
+                <!-- TODO POUR LA SUITE 
+                - rajouter une description, un logo, un graphe evolutif par entreprise à afficer ici
+                - rajouter un champs evenement vide et si jamais proba on ajoute et on l'affiche ici si non vide
+                - evenement de type le directeur est en proces pour détournement de fond etc...
+                - boucle de simu en back maj des fond des différents joueurs, et des différentes cotes en bourse 
+                et on sera pas mal quand on aura fait tous ça déjà si t'as d'autre idée note les ici mdr tu verras jamais ce texte 
+                -->
+            </div>
+            <p>Faits sur l'entreprise, par exemple : {{ entreprise.description }}</p>
+          </div>
+        {% endfor %}
+
+      </div>
       <form name="formulaire" method="post" action="/simulation/" onSubmit="return checkform()">
         <div id="newPlacement">
           <h1>Liste des nouveaux placements</h1>
-                {% csrf_token %}
           <ul>
-            {% for entreprise in entreprises %}
-            <li>
-              <label for="nom">{{ entreprise.nom }}</label>
-              <label for="cote">Cote:{{ entreprise.cote }}</label>
-              <label for="argent">Argent:</label>
-              <input name="E_{{ entreprise.idEntreprise }}" value="0">$</label>
-            </li>
-            {% endfor %}
+              {% csrf_token %}
+              {% for entreprise in entreprises %}
+              <li>
+                  <div class="item">
+                      <label for="nom">{{ entreprise.nom }}</label>
+                  </div>
+                  <div class="item">
+                      <label for="cote">Cote:{{ entreprise.cote }}</label>
+                  </div>
+                  <div class="item">
+                      <label for="argent">Argent:</label>
+                      <input name="E_{{ entreprise.idEntreprise }}" value="0">$</label>
+                  </div>
+              </li>
+              {% endfor %}
           </ul>
-
         </div>
-
         <div id="placementJoueur"> 
           <h1>Vos placements</h1>
           <ul>
-            {% for placement in placements %}
+              {% for placement in placements %}
                   <li>
-                    <span>Entreprise {{ placement.Entreprise.nom }}</span>
-                    <span>Argent {{ placement.argent }}</span>
-                    <label for="{{ forloop.counter }}">Supprimer</label>
-                    <input type="checkbox" name="placement_{{ placement.Entreprise.idEntreprise }}" value="supprime">
-                    <input type="hidden" name="placement_{{ placement.Entreprise.idEntreprise }}_val" value="{{ placement.argent }}"></input>
+                      <div class="item">
+                          <span>Entreprise {{ placement.Entreprise.nom }}</span>
+                      </div>
+                      <div class="item">
+                          <span>Argent {{ placement.argent }}</span>
+                      </div>
+                      <div class="item">
+                          <label for="{{ forloop.counter }}">Supprimer</label>
+                          <input type="checkbox" name="placement_{{ placement.Entreprise.idEntreprise }}" value="supprime">
+                      </div>
+                      <input type="hidden" name="placement_{{ placement.Entreprise.idEntreprise }}_val" value="{{ placement.argent }}"></input>
                   </li>
-            {% endfor %}
+              {% endfor %}
           </ul>
         </div>
-
         <input type="hidden" name="playerCapital" value="{{player.capital}}">
         <input type="submit" value="confirmer" id="bouton_confirmer">
         
       </form>
-      <div id="prevision">
-        <!-- tableau avec "graph" -->
-      </div>
-      
     </main>
   </body>
   <footer>

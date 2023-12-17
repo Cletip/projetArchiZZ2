@@ -33,7 +33,7 @@ main{
     align-items: center;
 }
 
-#Joueur, #leaderboard,form{
+#Joueur, #leaderboard,form, #prevision{
     display: flex;
     flex-direction: column;
     width: 80%;
@@ -79,6 +79,12 @@ li {
     border-bottom: 1px solid #eee;
 }
 
+.item {
+
+    min-width: 30%;
+
+}
+
 p {
     font-size: 18px;
     text-align: justify;
@@ -108,17 +114,70 @@ footer{
     transition: 0.5s;
     cursor: pointer;
     border: 2px solid rgb(235, 162, 113);
-  }
+}
   
-  #bouton_confirmer:hover{
-      background: rgb(235, 162, 113);
-      color: rgb(121, 115, 115);
-      box-shadow: 0 0 5px rgb(235, 162, 113),
-                  0 0 25px rgb(235, 162, 113),
-                  0 0 50px rgb(235, 162, 113);
-       -webkit-box-reflect:below 1px linear-gradient(transparent, #0005);
-  }
+#bouton_confirmer:hover{
+    background: rgb(235, 162, 113);
+    color: rgb(121, 115, 115);
+    box-shadow: 0 0 5px rgb(235, 162, 113),
+                0 0 25px rgb(235, 162, 113),
+                0 0 50px rgb(235, 162, 113);
+    -webkit-box-reflect:below 1px linear-gradient(transparent, #0005);
+}
 
-  .error {
-    color: red;
-  }
+.error {
+color: red;
+}
+
+
+
+/* graphe et prédiction */
+
+
+
+.tabcontent {
+
+display: none;
+
+}
+
+#Entreprise1{
+    display: block;
+}
+
+
+.tabcontent p {
+
+margin-top: 15px;
+
+}
+
+
+#menu_entreprise_prevision{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 5px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.25);
+    background-color: rgb(240, 170, 130);
+    border-top-left-radius: 40px; /* Arrondi pour le coin haut gauche */
+    border-bottom-right-radius: 40px; /* Arrondi pour le coin bas droite */
+}
+
+.tablinks {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+    background-color: inherit;
+    color: #333333;
+    border-top-left-radius: 40px; /* Arrondi pour le coin haut gauche */
+    border-bottom-right-radius: 40px; /* Arrondi pour le coin bas droite */
+}
+
+.tablinks:hover {
+    background-color: rgb(148, 100, 69);
+}
