@@ -9,6 +9,8 @@ class Entreprise(models.Model):
     idEntreprise = models.AutoField(primary_key=True)
     nom = models.CharField(max_length=100,default='Cacaprout&co')  # Ajout du champ "nom"
     cote = models.FloatField(default=0.0)
+    description = models.TextField(blank=True, null=True)  
+    event = models.CharField(max_length=255, blank=True, null=True, default='none') 
 
 class Placement(models.Model):
     joueur = models.ForeignKey(Joueur, on_delete=models.CASCADE)

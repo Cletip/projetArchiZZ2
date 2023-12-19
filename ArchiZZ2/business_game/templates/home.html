@@ -47,19 +47,24 @@
         {% for entreprise in entreprises %}
           <div id="Entreprise{{ forloop.counter }}" class="tabcontent">
             <h2>{{ entreprise.nom }}</h2>
+            <img src="{% static 'img/'|add:entreprise.nom|add:'.png' %}" alt="{{ entreprise.nom }} Logo">
             <div class="graph-container">
-                <!-- TODO POUR LA SUITE 
+            </div>
+            <p>description : {{ entreprise.description }}</p>
+            <p>Cote : {{ entreprise.cote }}</p>
+            {% if entreprise.event != 'none' %}
+              <p>Événement : {{ entreprise.event }}</p>
+            {% endif %}
+          </div>
+        {% endfor %}
+
+                        <!-- TODO POUR LA SUITE 
                 - rajouter une description, un logo, un graphe evolutif par entreprise à afficer ici
                 - rajouter un champs evenement vide et si jamais proba on ajoute et on l'affiche ici si non vide
                 - evenement de type le directeur est en proces pour détournement de fond etc...
                 - boucle de simu en back maj des fond des différents joueurs, et des différentes cotes en bourse 
                 et on sera pas mal quand on aura fait tous ça déjà si t'as d'autre idée note les ici mdr tu verras jamais ce texte 
                 -->
-            </div>
-            <p>Faits sur l'entreprise, par exemple : {{ entreprise.description }}</p>
-          </div>
-        {% endfor %}
-
       </div>
       <form name="formulaire" method="post" action="/simulation/" onSubmit="return checkform()">
         <div id="newPlacement">

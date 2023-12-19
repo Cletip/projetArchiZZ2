@@ -45,8 +45,13 @@ main{
     text-align: center;
 }
 
+
 #newPlacement, #placementJoueur{
     width: 100%;
+}
+
+#prevision img{
+    width: 400px;
 }
 
 

@@ -65,15 +65,21 @@ def initialize_database(NomJoueur, CapitalDep):
 
     # Créer des bots
     bot1 = Joueur.objects.create(capital=1000.0, nom="Elon")
-    bot2 = Joueur.objects.create(capital=1500.0, nom="Bezooos")
+    bot2 = Joueur.objects.create(capital=1500.0, nom="Bezoos")
+    bot3 = Joueur.objects.create(capital=2000.0, nom="Boloré")
+    bot4 = Joueur.objects.create(capital=1500.0, nom="Mr. Beast")
 
-    # Créer des entreprises
-    entreprise1 = Entreprise.objects.create(cote=50.0, nom="cacaland")
-    entreprise2 = Entreprise.objects.create(cote=75.0, nom="pipiboudin")
+    # Créez 4 instances d'entreprise avec des noms et des cotes diverses
+    entreprise1 = Entreprise.objects.create(cote=1.2, nom="SeriousCorp", description="Une entreprise sérieuse spécialisée dans la fourniture de solutions professionnelles.", event = "Lancement d'un nouveau produit révolutionnaire.")
+    entreprise2 = Entreprise.objects.create(cote=0.9, nom="ProInvest", description="ProInvest est engagée dans l'investissement responsable et durable.", event = "Participation à une conférence sur l'investissement éthique.")
+    entreprise3 = Entreprise.objects.create(cote=1.5, nom="GlobalTech", description="GlobalTech est à la pointe de l'innovation technologique, offrant des solutions mondiales.", event = "GlobalTech sponsorise une conférence internationale sur la technologie.")
+    entreprise4 = Entreprise.objects.create(cote=1.8, nom="InnoSolutions", description="InnoSolutions se consacre à la création de solutions innovantes pour les défis commerciaux actuels.")
 
     # Créer des placements
     placement1 = Placement.objects.create(joueur=bot1, Entreprise=entreprise1)
     placement2 = Placement.objects.create(joueur=bot2, Entreprise=entreprise2)
+    placement2 = Placement.objects.create(joueur=bot3, Entreprise=entreprise3)
+    placement2 = Placement.objects.create(joueur=bot4, Entreprise=entreprise4)
 
 def display_data(request):
     joueurs = Joueur.objects.all()
