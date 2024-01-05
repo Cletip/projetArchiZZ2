@@ -186,3 +186,13 @@ margin-top: 15px;
 .tablinks:hover {
     background-color: rgb(148, 100, 69);
 }
+
+
+/*    graphe     */
+
+.graph-container{
+    height: 300px;
+    background-color: rgb(229, 229, 229);
+    border-radius: 15px;
+    padding: 5px;
+}

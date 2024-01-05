@@ -6,6 +6,7 @@
     <title>Business Game</title>
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
     <script src="{% static 'js/home.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicon-32x32.png' %}">
   </head>
   <header>
@@ -15,7 +16,7 @@
     <main>
       <div id="Joueur">
         <h1>
-          {{player.nom}}  :  {{player.capital}} $
+          {{player.nom}}<br>Capital : {{player.capital}}$ <br> Fond disponible : {{player.fond_disponible}}$
         </h1>
       </div>
       <div id="leaderboard">
@@ -38,6 +39,9 @@
       </div>
       <div id="prevision">
         <!-- tableau avec "graph" -->
+        <script>
+          var cours_boursier_data = {{ cours_boursier_data|safe }};
+        </script>
         <div id="menu_entreprise_prevision" >
           {% for entreprise in entreprises %}
             <button class="tablinks" onclick="openTab(event, 'Entreprise{{ forloop.counter }}')">{{ entreprise.nom }}</button>
@@ -48,23 +52,18 @@
           <div id="Entreprise{{ forloop.counter }}" class="tabcontent">
             <h2>{{ entreprise.nom }}</h2>
             <img src="{% static 'img/'|add:entreprise.nom|add:'.png' %}" alt="{{ entreprise.nom }} Logo">
-            <div class="graph-container">
-            </div>
             <p>description : {{ entreprise.description }}</p>
             <p>Cote : {{ entreprise.cote }}</p>
+            <p>Valeur en bourse : {{ entreprise.valeurBourse }}</p>
+            <h2>Évolution en Bourse</h2>
+            <div class="graph-container" id="chart-container-{{ entreprise.idEntreprise }}">
+                <canvas id="myChart-{{ entreprise.idEntreprise }}"></canvas>
+            </div>
             {% if entreprise.event != 'none' %}
               <p>Événement : {{ entreprise.event }}</p>
             {% endif %}
           </div>
         {% endfor %}
-
-                        <!-- TODO POUR LA SUITE 
-                - rajouter une description, un logo, un graphe evolutif par entreprise à afficer ici
-                - rajouter un champs evenement vide et si jamais proba on ajoute et on l'affiche ici si non vide
-                - evenement de type le directeur est en proces pour détournement de fond etc...
-                - boucle de simu en back maj des fond des différents joueurs, et des différentes cotes en bourse 
-                et on sera pas mal quand on aura fait tous ça déjà si t'as d'autre idée note les ici mdr tu verras jamais ce texte 
-                -->
       </div>
       <form name="formulaire" method="post" action="/simulation/" onSubmit="return checkform()">
         <div id="newPlacement">
@@ -77,7 +76,7 @@
                       <label for="nom">{{ entreprise.nom }}</label>
                   </div>
                   <div class="item">
-                      <label for="cote">Cote:{{ entreprise.cote }}</label>
+                      <label for="cote">Cote:{{ entreprise.cote }}%</label>
                   </div>
                   <div class="item">
                       <label for="argent">Argent:</label>
@@ -93,21 +92,21 @@
               {% for placement in placements %}
                   <li>
                       <div class="item">
-                          <span>Entreprise {{ placement.Entreprise.nom }}</span>
+                          <span>Entreprise {{ placement.entreprise.nom }}</span>
                       </div>
                       <div class="item">
                           <span>Argent {{ placement.argent }}</span>
                       </div>
                       <div class="item">
                           <label for="{{ forloop.counter }}">Supprimer</label>
-                          <input type="checkbox" name="placement_{{ placement.Entreprise.idEntreprise }}" value="supprime">
+                          <input type="checkbox" name="placement_{{ placement.entreprise.idEntreprise }}" value="supprime">
                       </div>
-                      <input type="hidden" name="placement_{{ placement.Entreprise.idEntreprise }}_val" value="{{ placement.argent }}"></input>
+                      <input type="hidden" name="placement_{{ placement.entreprise.idEntreprise }}_val" value="{{ placement.argent }}"></input>
                   </li>
               {% endfor %}
           </ul>
         </div>
-        <input type="hidden" name="playerCapital" value="{{player.capital}}">
+        <input type="hidden" name="playerFond" value="{{player.fond_disponible}}">
         <input type="submit" value="confirmer" id="bouton_confirmer">
         
       </form>
