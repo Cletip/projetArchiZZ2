@@ -62,12 +62,9 @@ function openTab(evt, tabName) {
 
 
 document.addEventListener("DOMContentLoaded", function() {
-    
-    // Convertissez les valeurs de l'objet cours_boursier_data en tableau
+
+
     var entreprisesDataArray = Object.values(cours_boursier_data);
-    
-    
-    // console.log(entreprisesDataArray);
     
     // Parcourez chaque graphique sur la page
     entreprisesDataArray.forEach(function(data, index) {
@@ -87,9 +84,9 @@ document.addEventListener("DOMContentLoaded", function() {
             return entry.fields.valeur_bourse;
         });
 
+
         // Configurez le graphique avec Chart.js pour chaque entreprise
         var canvasId = 'myChart-' + JSON.parse(data)[0].fields.entreprise;
-        console.log(canvasId);
 
         var ctx = container.querySelector('#' + canvasId).getContext('2d');
         var myChart = new Chart(ctx, {
