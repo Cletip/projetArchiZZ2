@@ -149,16 +149,20 @@ def initialize_database(NomJoueur, CapitalDep):
     bot4 = addJoueur("Mr.Beast", 1500.0)
 
     # Créez 4 instances d'entreprise avec des noms et des cotes diverses
-    entreprise1 = addEntreprise("SeriousCorp", "Une entreprise sérieuse spécialisée dans la fourniture de solutions professionnelles.")
-    entreprise2 = addEntreprise("ProInvest", "ProInvest est engagée dans l'investissement responsable et durable.")
-    entreprise3 = addEntreprise("GlobalTech", "GlobalTech est à la pointe de l'innovation technologique, offrant des solutions mondiales.")
-    entreprise4 = addEntreprise("InnoSolutions", "InnoSolutions se consacre à la création de solutions innovantes pour les défis commerciaux actuels.")
-    
+    entreprise1 = addEntreprise("SeriousCorp", "SeriousCorp Solutions est bien plus qu'une simple entreprise. Nous sommes des pionniers dans le domaine de la fourniture de solutions professionnelles, mettant l'accent sur la rigueur, la fiabilité et l'efficacité. Notre engagement envers la satisfaction client et notre approche sérieuse font de nous le partenaire idéal pour résoudre vos défis professionnels les plus complexes. Avec SeriousCorp, chaque solution est conçue avec la plus grande attention aux détails, reflétant notre engagement envers l'excellence professionnelle.")
+    entreprise2 = addEntreprise("ProInvest", "ProInvest Responsable est bien plus qu'une entreprise d'investissement. Nous sommes les gardiens d'un avenir durable, dédiés à l'investissement responsable et éthique. Chez ProInvest, nous croyons que les investissements peuvent avoir un impact positif sur la planète. Notre engagement envers la durabilité, la transparence et la responsabilité fait de nous le choix idéal pour ceux qui cherchent à investir non seulement pour le rendement financier, mais aussi pour un monde meilleur.")
+    entreprise3 = addEntreprise("GlobalTech", "GlobalTech Innovations est à l'avant-garde de la révolution technologique, offrant des solutions mondiales qui transcendent les frontières. Nous sommes bien plus qu'une entreprise technologique standard - nous sommes les architectes du futur numérique. Notre engagement envers l'innovation, la créativité et la qualité fait de nous le leader incontesté dans la fourniture de solutions technologiques qui repoussent les limites. Chez GlobalTech, chaque innovation est une étape vers un avenir technologique plus intelligent et plus connecté.")
+    entreprise4 = addEntreprise("InnoSolutions", "InnoSolutions Créatives n'est pas seulement une entreprise, c'est une force créatrice dédiée à résoudre les défis commerciaux actuels par le biais de l'innovation. Nous sommes les architectes de solutions novatrices, combinant créativité et expertise pour transformer les obstacles en opportunités. Chez InnoSolutions, chaque défi est une invitation à repousser les limites de la créativité et de l'ingéniosité pour trouver des solutions uniques qui façonnent l'avenir des affaires.")
+    entreprise5 = addEntreprise("DataPulse", "DataPulse Solutions est une entreprise innovante spécialisée dans l'analyse et l'optimisation de données. Nous exploitons la puissance des pulsations de données pour offrir des solutions avancées d'analyse, de visualisation et de gestion des données à nos clients. Que ce soit pour découvrir des tendances cachées, améliorer l'efficacité opérationnelle ou prendre des décisions éclairées, DataPulse excelle dans l'extraction de la quintessence des données pour propulser nos clients vers l'avenir.")
+    entreprise6 = addEntreprise("NanoVerse", "NanoVerse Technologies émerge comme une puissance dans le monde de la technologie, explorant l'infiniment petit pour créer des solutions exceptionnelles. Bien plus qu'une simple entreprise technologique, nous sommes les pionniers de l'infiniment petit, exploitant les nanotechnologies pour transformer la façon dont nous percevons et utilisons la technologie. Chez NanoVerse, chaque innovation est ancrée dans notre engagement envers la précision, l'efficacité et l'exploration des frontières de la science.")
+
     # ajouter les valeurs initiales des entreprises dans le cours boursier
     addCoursBoursier(entreprise1, 1)
     addCoursBoursier(entreprise2, 1)
     addCoursBoursier(entreprise3, 1)
     addCoursBoursier(entreprise4, 1)
+    addCoursBoursier(entreprise5, 1)
+    addCoursBoursier(entreprise6, 1)
 
     # Créer des placements
     addPlacement(bot1, entreprise1, 350)
