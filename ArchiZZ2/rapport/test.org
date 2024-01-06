@@ -1,0 +1,74 @@
+
+* Liste de tâches
+
+
+- Prévisions des tâches (4 heures)
+  - Étude de faisabilité technique et identification des risques potentiels.
+  - Établissement d'une charte de projet initial.
+  - Commencement de la répartition des tâches
+
+- Cahier des charges (6 heures)
+  - Rédaction des objectifs de gameplay et des mécaniques de jeu.
+  - Définition des critères d'interface utilisateur et d'expérience utilisateur (UX).
+  - Élaboration des exigences techniques et technologiques.
+  - Spécification des contraintes de sécurité et de confidentialité.
+
+- Setup du projet (6 heures)
+  - Mise en place de l'environnement de développement et des outils de versioning.
+  - Configuration des serveurs de développement et de test.
+  - Préparation des templates de code et des librairies nécessaires.
+  - Développement d'un prototype de base pour les tests initiaux.
+
+- Vue (8 heures)
+  - Conception des wireframes pour les différentes interfaces du jeu.
+  - Création de maquettes interactives pour les écrans principaux.
+  - Développement de la charte graphique du jeu.
+  - Intégration des premiers éléments graphiques dans le prototype.
+
+- Base de données (10 heures)
+  - Conception du schéma de base de données pour gérer les données de jeu.
+  - Mise en place des tables pour les utilisateurs, les transactions et les statistiques.
+  - Développement des procédures stockées pour les opérations courantes.
+  - Test des performances et optimisation des requêtes.
+
+- Simulation financière (10 heures)
+  - Développement d'algorithmes pour simuler le marché boursier.
+  - Création de modèles pour la fluctuation des prix et les indices économiques.
+  - Intégration de scénarios économiques réels et historiques.
+  - Mise en place de systèmes pour la gestion des risques et des bénéfices.
+
+- Affichage de graphique / BI (6 heures)
+  - Conception de tableaux de bord pour la visualisation des performances financières.
+  - Intégration de graphiques interactifs pour le suivi des investissements.
+  - Développement d'outils de reporting et d'analyse pour les joueurs.
+  - Tests d'usabilité pour assurer la clarté des informations présentées.
+
+
+
+
+* 2
+
+Fais moi une analyse pertinente et détailler des deux outils suivants :
+- git
+- Django
+
+Imagine que tu t'adresses à des professionnels et tu dois faire très bonne impression.
+
+
+* Complète ce tableau avec la liste de tâche (mes des heures cohérente.): 
+
+Complète ce tableau : 
+\textbf{Phase du projet} & \textbf{Durée (heure)} & \textbf{Cumul (heure)} \\
+\midrule
+Prévisions des tâches         & 4.00  & 4.00  \\
+Cahier des charges            & 6.00  & 10.00 \\
+Setup du projet               & 8.00  & 18.00 \\
+Vue                           & 8.00  & 26.00 \\
+Base de données               & 4.00  & 30.00 \\
+Simulation financière         & 4.00  & 34.00 \\
+Affichage de graphique / BI   & 2.00  & 36.00 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Puis Fais un diagramme de BERT, en latex !
