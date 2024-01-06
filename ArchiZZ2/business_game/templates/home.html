@@ -55,13 +55,13 @@
             <p>{{ entreprise.description }}</p>
             <p>Cote : {{ entreprise.cote }}</p>
             <p>Valeur en bourse : {{ entreprise.valeurBourse }}</p>
+            {% if entreprise.event != 'none' %}
+              <p>Événement : {{ entreprise.event }}</p>
+            {% endif %}
             <h2>Évolution en Bourse</h2>
             <div class="graph-container" id="chart-container-{{ entreprise.idEntreprise }}">
                 <canvas id="myChart-{{ entreprise.idEntreprise }}"></canvas>
             </div>
-            {% if entreprise.event != 'none' %}
-              <p>Événement : {{ entreprise.event }}</p>
-            {% endif %}
           </div>
         {% endfor %}
       </div>

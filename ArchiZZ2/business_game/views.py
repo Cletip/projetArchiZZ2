@@ -17,7 +17,7 @@ def simuler_evenement():
     # Renvoie d'un tuple avec en premier l'evenement et ensuite le pourcentage appliqué
     # Déterminer l'événement en fonction du tirage
     if tirage < 5:
-        return (random.choice(EVENEMENTS_TRES_MAUVAIS), -0.7)
+        return (random.choice(EVENEMENTS_TRES_MAUVAIS), -0.5)
     elif tirage < 15:
         return (random.choice(EVENEMENTS_MAUVAIS), -0.3)
     elif tirage < 25:
@@ -34,7 +34,8 @@ def suppresion_placement(request, joueur):
         if supprimer_placement == "supprime":
             # récupération argent placé
             placement = Placement.objects.filter(joueur=joueur, entreprise=entreprise).first()
-            joueur.fond_disponible += round(placement.argent, 2)
+            joueur.fond_disponible += placement.argent
+            joueur.fond_disponible = round(joueur.fond_disponible, 2)
             joueur.save()
 
             # Supprimer tous les placements correspondants pour ce joueur et cette entreprise
@@ -143,10 +144,10 @@ def initialize_database(NomJoueur, CapitalDep):
     addJoueur(NomJoueur, CapitalDep)
 
     # Créer des bots
-    bot1 = addJoueur("Elon", 1000.0)
-    bot2 = addJoueur("Bezoos", 1500.0)
-    bot3 = addJoueur("Boloré", 2000.0)
-    bot4 = addJoueur("Mr.Beast", 1500.0)
+    bot1 = addJoueur("Elon", int(CapitalDep) * 1.25)
+    bot2 = addJoueur("Bezoos", int(CapitalDep) * 1.3)
+    bot3 = addJoueur("Boloré", int(CapitalDep) * 1.2)
+    bot4 = addJoueur("Mr.Beast", int(CapitalDep) * 1.45)
 
     # Créez 4 instances d'entreprise avec des noms et des cotes diverses
     entreprise1 = addEntreprise("SeriousCorp", "SeriousCorp Solutions est bien plus qu'une simple entreprise. Nous sommes des pionniers dans le domaine de la fourniture de solutions professionnelles, mettant l'accent sur la rigueur, la fiabilité et l'efficacité. Notre engagement envers la satisfaction client et notre approche sérieuse font de nous le partenaire idéal pour résoudre vos défis professionnels les plus complexes. Avec SeriousCorp, chaque solution est conçue avec la plus grande attention aux détails, reflétant notre engagement envers l'excellence professionnelle.")
@@ -165,10 +166,29 @@ def initialize_database(NomJoueur, CapitalDep):
     addCoursBoursier(entreprise6, 1)
 
     # Créer des placements
-    addPlacement(bot1, entreprise1, 350)
-    addPlacement(bot2, entreprise2, 250)
-    addPlacement(bot3, entreprise3, 300)
-    addPlacement(bot4, entreprise4, 270)
+    # Supposons que vous avez six entreprises : entreprise1, entreprise2, ..., entreprise6
+    entreprises = [entreprise1, entreprise2, entreprise3, entreprise4, entreprise5, entreprise6]
+
+    # Supposons que vous avez quatre bots : bot1, bot2, bot3, bot4
+    bots = [bot1, bot2, bot3, bot4]
+
+    # Répartition aléatoire des fonds pour chaque bot
+    for bot in bots:
+        total_coefficient = 1.0  # Total des coefficients de répartition, doit être égal à 1.0
+        remaining_coefficient = total_coefficient
+
+        for i, entreprise in enumerate(entreprises[:-1]):
+            coefficient = random.uniform(0, remaining_coefficient)
+            remaining_coefficient -= coefficient
+
+            fonds_allocation = bot.fond_disponible * coefficient
+
+            # Ajouter le placement pour chaque bot et entreprise
+            addPlacement(bot, entreprise, fonds_allocation)
+
+        # Le reste des fonds va à la dernière entreprise
+        last_fonds_allocation = bot.fond_disponible * remaining_coefficient
+        addPlacement(bot, entreprises[-1], last_fonds_allocation)
 
 
 def display_data(request):

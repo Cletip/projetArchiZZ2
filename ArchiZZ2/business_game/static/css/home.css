@@ -127,7 +127,6 @@ footer{
     box-shadow: 0 0 5px rgb(235, 162, 113),
                 0 0 25px rgb(235, 162, 113),
                 0 0 50px rgb(235, 162, 113);
-    -webkit-box-reflect:below 1px linear-gradient(transparent, #0005);
 }
 
 .error {
@@ -168,6 +167,7 @@ margin-top: 15px;
     background-color: rgb(240, 170, 130);
     border-top-left-radius: 40px; /* Arrondi pour le coin haut gauche */
     border-bottom-right-radius: 40px; /* Arrondi pour le coin bas droite */
+    overflow-x: auto;
 }
 
 .tablinks {
