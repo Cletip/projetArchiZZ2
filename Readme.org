@@ -1,7 +1,5 @@
 
-* Environnement virtuel
-
-* Lancer django
+* Lancer le serveur !
 
 #+begin_src shell
 
@@ -12,63 +10,6 @@
   # Pour désactiver : deactivate
   # lancer le serveur
   python3 manage.py runserver
+  # puis cliquer sur le lien qui s'affiche dans la ligne de commande
 
-
-#+end_src
-
-* Tree
-:PROPERTIES:
-:CREATED:  [2023-11-07 Tue 11:35]
-:END:
-
-#+begin_src emacs-lisp
-
-(org-babel-do-load-languages
-'org-babel-load-languages
-'((shell . t)))
-
-#+end_src
-
-#+begin_src shell :results output
-
-tree businessGame/
-
-#+end_src
-
-#+RESULTS:
-#+begin_example
-businessGame/
-├── businessGame
-│   ├── asgi.py
-│   ├── __init__.py
-│   ├── pages
-│   │   └── admin.py
-│   ├── __pycache__
-│   │   ├── __init__.cpython-38.pyc
-│   │   ├── settings.cpython-38.pyc
-│   │   ├── urls.cpython-38.pyc
-│   │   └── wsgi.cpython-38.pyc
-│   ├── settings.py
-│   ├── urls.py
-│   └── wsgi.py
-├── db.sqlite3
-├── manage.py
-├── static
-│   └── image
-└── templates
-    └── home.html
-
-5 directories, 14 files
-#+end_example
-
-* Migration database
-:PROPERTIES:
-:CREATED:  [2023-11-21 Tue 11:08]
-:END:
-
-#+begin_src shell
-
-python3 manage.py makemigrations
-python3 manage.py migrate
-
-#+end_src
+#+end_src 
